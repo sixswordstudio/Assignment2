@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,9 +22,17 @@ namespace Assignment2
         {
             InitializeComponent();
 
-            // for each rule in a list of rules, create an instance of the rule
+            // I want to have a list of actions (string), a list of consequences (string), and list of time remaining (not sure, int? double?) 
+
+            // Time will have 3 items in the list. actions will have 5 items.consequences will have 7.
+
+            // Then i will have to... for i, print the time in grid position 1, and print the action in grid position 2, and print the consequence in grid position 3.
+
+            Rule.Add(new Rule(200, "if you like pie", "then bleep blorp all day"));
 
 
+
+            }
 
         }
     }

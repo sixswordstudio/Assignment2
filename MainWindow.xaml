@@ -47,6 +47,10 @@
                        FontSize="25"
                        Margin="10"
                        />
+            <TextBlock Text="Challenge 3" 
+                       FontSize="25"
+                       Margin="10"
+                       />
         </StackPanel>
 
     </Grid>

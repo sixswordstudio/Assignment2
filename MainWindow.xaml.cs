@@ -29,7 +29,7 @@ namespace Assignment2
             // Then i will have to... for i, print the time in grid position 1, and print the action in grid position 2, and print the consequence in grid position 3.
             List<string> actions = new List<string>
             {
-                "If you ",
+                "Action 1",
                 "Action 2",
                 "Action 3",
                 "Action 4",
@@ -47,19 +47,20 @@ namespace Assignment2
                 "Consequence 7"
             };
 
-            // 
+            // Starting times in minutes for the three rules.
+            List<int> time = new List<int> { 5, 10, 15 };
+
+            // Display each starting time with its action and consequence.
             for (int i = 0; i < 3; i++)
                 {
                     rulesPanel.Children.Add(new TextBlock
                     {
-                        Text = time[i] + " — "
+                        Text = time[i] + ":00 — "
                              + actions[i % actions.Count] + " — "
                              + consequences[i % consequences.Count]
                     });
                 }
 
-
-        }
 
         }
     }

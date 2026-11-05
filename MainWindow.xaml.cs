@@ -19,6 +19,11 @@ namespace Assignment2
         public MainWindow()
         {
             InitializeComponent();
+
+            // for each rule in a list of rules, create an instance of the rule
+
+
+
         }
     }
 }

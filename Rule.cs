@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Amy Park
+// COSC 2100
+// Assignment 2
+// Classes and Exceptions
+// Rule.cs defines what 1 rule contains ( 1 instance of a rule, which is 1 action, 1 consequence, and 1 time remaining). The Rule class is Public so it can be used in MainWindow.xaml.cs to create a list of rules, which will be displayed in the GUI.)
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 

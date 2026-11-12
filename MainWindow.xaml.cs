@@ -18,48 +18,52 @@ namespace Assignment2
     /// </summary>
     public partial class Challenges : Window
     {
+        private readonly Random random = new Random();
+        private readonly List<int> times = new List<int> { 5, 10, 15 };
+        private readonly List<string> actions = new List<string>
+        {
+            "If the Leafs give up the first goal",
+            "If the Leafs take a penalty",
+            "If the Leafs score on the power play",
+            "If the Leafs blow a 2 goal lead",
+            "If the Leafs blow a 3 goal lead",
+            "If the Leafs win in overtime"
+        };
+        private readonly List<string> consequences = new List<string>
+        {
+            "say 'this is our year' with a straight face",
+            "wear your Leafs jersey inside out on the Go Train back to Oshawa",
+            "do jumping jacks during the American National Anthem",
+            "text a habs fan 'I still belief'",
+            "you are now the goal horn. sing us the song of your people",
+            "you must become a true believer in the power of the amulet.",
+            "write a letter of apology to Mats Sundin"
+        };
+
         public Challenges()
         {
             InitializeComponent();
 
-            // I want to have a list of actions (string), a list of consequences (string), and list of time remaining (not sure, int? double?) 
-
-            // Time will have 3 items in the list. actions will have 5 items.consequences will have 7.
-
-            // Then i will have to... for i, print the time in grid position 1, and print the action in grid position 2, and print the consequence in grid position 3.
-            List<string> actions = new List<string>
-            {
-                "Action 1",
-                "Action 2",
-                "Action 3",
-                "Action 4",
-                "Action 5"
-             };
-
-            List<string> consequences = new List<string>
-                {
-                "Consequence 1",
-                "Consequence 2",
-                "Consequence 3",
-                "Consequence 4",
-                "Consequence 5",
-                "Consequence 6",
-                "Consequence 7"
-            };
-
-            // Starting times in minutes for the three rules.
-            List<int> time = new List<int> { 5, 10, 15 };
-
-            //todo: timer
-
-
-            //todo: randomizer
+            //todo: timer countdown :(
 
 
 
         }
 
+        // Generate the rules by randomly selecting an action, a consequence, and a time.
+        private void Roll_Click(object sender, RoutedEventArgs e)
+        {
+            string action = actions[random.Next(actions.Count)];
+            string consequence = consequences[random.Next(consequences.Count)];
+            int time = times[random.Next(times.Count)];
 
+            // Create a new instance of the Rule class using the randomly selected action, consequence, and time.
+            Rule rule = new Rule(time, action, consequence);
+
+            RulesTextBlock.Text = rule.ToString();
+            TimeTextBlock.Text = $"You have {rule.Time} minutes!";
+
+        }
     }
-    }
+}
 

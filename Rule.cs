@@ -19,6 +19,40 @@ namespace Assignment2
 {
     public class Rule
     {
+         Random Random = new Random();
+
+        // Starting times in minutes for the three rules.
+        // The times are stored in a list of integers, which will be used to create the rules.
+        List<int> times = new List<int> // My brain can finally start to read this properly! data type, variable name, then assign the variable a new instance of a list int, full of the following values:
+            {
+                5,  // 300 s
+                10, // 600 s
+                15  // 900 s
+            };
+
+        List<string> actions = new List<string>
+            {
+                "If the leafs give away the puck...",
+                "If the leafs let in 3 goals...",
+                "Action 3",
+                "Action 4",
+                "Action 5"
+             };
+
+        List<string> consequences = new List<string>
+            {
+                "Follow 5 Montreal thirst trap accounts",
+                "",
+                "Consequence 3",
+                "Consequence 4",
+                "Consequence 5",
+                "Consequence 6",
+                "Consequence 7"
+            };
+
+
+
+
         // Create list of rules for actions, consequences, and time remaining
         private int time;
         private string action;
@@ -45,10 +79,11 @@ namespace Assignment2
         // Constructor for Rule class
         public Rule(int time, string action, string consequence)
         {
-            Time = time;
+            Time = time; // Given the above, Capitalized Time is the public property, and lowercase time is the private field. By setting the public to the private, I guess I am add a layer of security and control over how things are accessed, modified, and displayed. 
             Action = action;
             Consequence = consequence;
         }
+
 
         public override string ToString()
         {

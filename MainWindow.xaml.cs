@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Assignment2
 {
@@ -20,6 +21,8 @@ namespace Assignment2
     {
         private readonly Random random = new Random();
         private readonly List<int> times = new List<int> { 5, 10, 15 };
+        private readonly List<Rule> rules = new List<Rule>();
+        private readonly DispatcherTimer timer = new DispatcherTimer();
         private readonly List<string> actions = new List<string>
         {
             "If the Leafs give up the first goal",
@@ -44,26 +47,73 @@ namespace Assignment2
         {
             InitializeComponent();
 
-            //todo: timer countdown :(
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
 
 
 
         }
 
-        // Generate the rules by randomly selecting an action, a consequence, and a time.
+        // Generate three rules with 5, 10, and 15 minute countdowns.
         private void Roll_Click(object sender, RoutedEventArgs e)
         {
-            string action = actions[random.Next(actions.Count)];
-            string consequence = consequences[random.Next(consequences.Count)];
-            int time = times[random.Next(times.Count)];
+            try
+            {
+                rules.Clear();
+                foreach (int minutes in times)
+                {
+                    rules.Add(CreateRandomRule(minutes));
+                }
+                RefreshDisplay();
+                timer.Start();
+            }
+            catch (ArgumentException exception)
+            {
+                timer.Stop();
+                MessageBox.Show(exception.Message, "Invalid rule");
+            } // adding exception handling
+        } // Fixing this so that it clears and updates the rules when the button is clicked again
 
-            // Create a new instance of the Rule class using the randomly selected action, consequence, and time.
-            Rule rule = new Rule(time, action, consequence);
+        private Rule CreateRandomRule(int minutes)
+        {
+            return new Rule(minutes * 60,
+                actions[random.Next(actions.Count)],
+                consequences[random.Next(consequences.Count)]);
+        } // Creates a random rule with the specified time, this time using Objects more effectively
 
-            RulesTextBlock.Text = rule.ToString();
-            TimeTextBlock.Text = $"You have {rule.Time} minutes!";
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            try
+            {
+                for (int index = 0; index < rules.Count; index++)
+                {
+                    rules[index].Time--;
+                    if (rules[index].Time == 0)
+                    {
+                        rules[index] = CreateRandomRule(times[index]);
+                    }
+                }
+                RefreshDisplay();
+            }
+            catch (ArgumentException exception)
+            {
+                timer.Stop();
+                MessageBox.Show(exception.Message, "Invalid rule");
+            }
+        } // for loop that creates the timer ticking countdown. Calls objects from the Rule class to create a new rule when the time reaches 0.
 
-        }
+        private void RefreshDisplay() // Refreshes the display of the rules and their countdowns in the GUI, so that the timer ticks aren't just sitting there in the background doing their thing while the UI chills slothily.
+        { // this is more complicated than I would want to use, but I am out of time
+            List<string> countdowns = new List<string>();
+            List<string> descriptions = new List<string>();
+            foreach (Rule rule in rules)
+            {
+                countdowns.Add($"{rule.Time / 60:00}:{rule.Time % 60:00}");
+                descriptions.Add($"{rule.Action}, {rule.Consequence}");
+            }
+            TimeTextBlock.Text = string.Join("\n\n", countdowns);
+            RulesTextBlock.Text = string.Join("\n\n", descriptions);
+        } // I 
     }
 }
 

@@ -79,6 +79,13 @@ namespace Assignment2
         // Constructor for Rule class
         public Rule(int time, string action, string consequence)
         {
+            if (time <= 0)
+                throw new ArgumentOutOfRangeException(nameof(time), "Rule time must be greater than zero.");
+            if (string.IsNullOrWhiteSpace(action))
+                throw new ArgumentException("A rule needs an action.", nameof(action));
+            if (string.IsNullOrWhiteSpace(consequence))
+                throw new ArgumentException("A rule needs a consequence.", nameof(consequence));// throwing exceptions when they come up!
+
             Time = time; // Given the above, Capitalized Time is the public property, and lowercase time is the private field. By setting the public to the private, I guess I am add a layer of security and control over how things are accessed, modified, and displayed. 
             Action = action;
             Consequence = consequence;

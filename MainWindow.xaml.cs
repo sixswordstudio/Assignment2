@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Assignment2
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Challenges.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Challenges : Window
     {
-        public MainWindow()
+        public Challenges()
         {
             InitializeComponent();
 
@@ -50,18 +50,16 @@ namespace Assignment2
             // Starting times in minutes for the three rules.
             List<int> time = new List<int> { 5, 10, 15 };
 
-            // Display each starting time with its action and consequence.
-            for (int i = 0; i < 3; i++)
-                {
-                    rulesPanel.Children.Add(new TextBlock
-                    {
-                        Text = time[i] + ":00 — "
-                             + actions[i % actions.Count] + " — "
-                             + consequences[i % consequences.Count]
-                    });
-                }
+            //todo: timer
+
+
+            //todo: randomizer
+
 
 
         }
+
+
     }
-}
+    }
+

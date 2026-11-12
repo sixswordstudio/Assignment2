@@ -9,13 +9,38 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Assignment2
+
+// Requirements:
+// Time, Action, and Consequence properties,
+// a constructor accepting all three,
+// an overridden ToString() or equivalent instance method producing meaningful rule text.
+// backing fields kept private.
+
 {
     public class Rule
     {
         // Create list of rules for actions, consequences, and time remaining
-        public int Time { get; } // getters and setters allow for the properties to be accessed and modified from outside the class. i.e, accessed from MainWindow.xaml.cs
-        public string Action { get; } // I'm pretty sure I only need getters for these properties, since they will be set in the constructor and not modified afterwards.
-        public string Consequence { get; } // time will tell, i suppose.
+        private int time;
+        private string action;
+        private string consequence;
+
+        // The public Time takes the private time, and sets the private time as the value for the public Time. Public time can be accessed by other classes, but the private time can only be accessed within this Rules class file. 
+        public int Time 
+        {
+            get { return time; } 
+            set { time = value; } 
+        
+        } 
+        public string Action
+        {
+            get { return action; }
+            set { action = value; }
+        }
+        public string Consequence
+        {
+            get { return consequence; }
+            set { consequence = value; }
+        }
 
         // Constructor for Rule class
         public Rule(int time, string action, string consequence)
@@ -23,6 +48,11 @@ namespace Assignment2
             Time = time;
             Action = action;
             Consequence = consequence;
+        }
+
+        public override string ToString()
+        {
+            return $"Time: {Time}, Action: {Action}, Consequence: {Consequence}";
         }
     }
 }

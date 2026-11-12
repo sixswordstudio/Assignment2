@@ -15,7 +15,7 @@
     Business Value: When the text is difficult to read, the user risks losing their match objectives while trying to read the challenge. This would lower trust in, and then interest in, the challenge app. To prevent customer churn, it's in our interest to ensure the window maintains proportions and readability even while being resized. 
     -->
 <!--#endregion-->
-<Window x:Class="Assignment2.MainWindow"
+<Window x:Class="Assignment2.Challenges"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
